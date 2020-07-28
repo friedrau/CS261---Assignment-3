@@ -96,49 +96,21 @@ struct Node* BSTnodeAdd(struct Node* current, TYPE value) {
  
 
 int containsBSTree(BSTree* myTree, TYPE value) {
-   struct Node *node; // = myTree->root;
-   while (node != NULL) {
-      if (node->value == 0) {
-	 return 1;
-      }
-      else if (value < node->value) {
-	 node = node->left;
-      }
-      else {
-	 node = node->right;
-      }
-   }
-   return 0;
+
 }
 
 TYPE minBSTree(BSTree* myTree) {
-   struct Node *node;
-   while (myTree->root != NULL) {
-      if (node->left != NULL) {
-	 node = node->left;
-      }
-   }
-   return (node->left);
+
 }
 
 TYPE maxBSTree(BSTree* myTree) {
-   struct Node *node;
-   while (myTree->root != NULL) {
-      if (node->right != NULL) {
-	 node = node->right;
-      }
-   }
-   return (node->right);
-}
+
 
 void removeBSTree(BSTree *tree, TYPE value) {
    
 }  
 
 void printBSTree(BSTree* myTree) {
-//   struct Node *node;
-   printf("(");
-//   printBSTree(myTree->root);
 
 }
 

@@ -46,10 +46,23 @@ struct BSTree* newBSTree() {
    return tree;
 }
 
-void deleteBSTree(BSTree* myTree) {
-
+void BSTnodeRemove(struct Node *node) {
+   BSTnodeRemove(node->left);
+   BSTnodeRemove(node->right);
+   free(node);
 }
-   
+ 
+void BSTnodeClear(BSTree *myTree) {
+   BSTnodeRemove(myTree->root);
+   myTree->root = 0;
+   myTree->count = 0;
+} 
+ 
+void deleteBSTree(BSTree* myTree) {
+  BSTnodeClear(myTree);
+  free(myTree);
+}
+
 int isEmptyBSTree(BSTree* myTree) {
    return (myTree->count) == 0;
 }
@@ -58,26 +71,29 @@ int sizeBBSTree(BSTree* myTree) {
    return myTree->left;
 }
 
-void addBSTree(BSTree* myTree, TYPE value) {
-/*
-   struct Node *node;
-//   struct Node *current;
-   if (myTree == NULL) {
-      node = malloc(sizeof(struct BSTree));
-      node->value = value;
-      node->left = 0;
-      node->right = 0;
+struct Node* BSTnodeAdd(struct Node* current, TYPE value) {
+   struct Node *nodeA;
+   if (current == 0) {
+      nodeA = malloc(sizeof(struct Node));
+      nodeA->value = value;
+      nodeA->left = 0;
+      nodeA->right = 0;
+      return nodeA;
    }
    if (value < current->value) {
-//      myTree->count = addBSTree(current->left, value);
+      current->left = BSTnodeAdd(current->left,value);
    }
    else {
-//      myTree->count = addBSTree(current->right, value);
+      current->right = BSTnodeAdd(current->right,value);
    }
-   */
-//   myTree->root = addBSTree(myTree->root, value);
-//   myTree->count++;
-}
+   return current;
+ }
+
+ void addBSTree(BSTree* myTree, TYPE value) {
+    myTree->root = BSTnodeAdd(myTree->root, value);
+    myTree->count++;
+ }
+ 
 
 int containsBSTree(BSTree* myTree, TYPE value) {
    struct Node *node; // = myTree->root;

@@ -47,9 +47,11 @@ struct BSTree* newBSTree() {
 }
 
 void BSTnodeRemove(struct Node *node) {
-   BSTnodeRemove(node->left);
-   BSTnodeRemove(node->right);
-   free(node);
+   if (node == 0) {
+      BSTnodeRemove(node->left);
+      BSTnodeRemove(node->right);
+      free(node);
+   }
 }
  
 void BSTnodeClear(BSTree *myTree) {
@@ -74,13 +76,13 @@ int sizeBBSTree(BSTree* myTree) {
 struct Node* BSTnodeAdd(struct Node* current, TYPE value) {
    struct Node *nodeA;
    if (current == 0) {
-      nodeA = malloc(sizeof(struct Node));
+      nodeA = (struct *nodeA)malloc(sizeof(struct Node));
       nodeA->value = value;
       nodeA->left = 0;
       nodeA->right = 0;
       return nodeA;
    }
-   if (value < current->value) {
+   if (compare(value, current->value) <= 0) {
       current->left = BSTnodeAdd(current->left,value);
    }
    else {

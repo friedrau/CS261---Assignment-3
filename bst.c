@@ -107,6 +107,7 @@ TYPE minBSTree(BSTree* myTree) {
 
 TYPE maxBSTree(BSTree* myTree) {
 
+}
 
 void removeBSTree(BSTree *tree, TYPE value) {
    
